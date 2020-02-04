@@ -1,0 +1,80 @@
+@font-face {
+    font-family: koliko;
+    src: url(fonts/koliko-Regular.woff);
+}
+* {
+    box-sizing: border-box;
+}
+body{
+    /*font-family: koliko;*/
+    background-color: #001331;
+    font-family: 'Alata', sans-serif;   
+    color: white;
+    margin: 0;
+}
+div a {
+    float: left;
+}
+
+.logo-home{
+    font-size: 32px;
+    color: #001331;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+
+.topnav{
+    overflow: hidden;
+    display: flex;
+    background-color:aqua;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1% 8% 1% 8%;
+    border: 1px solid black;
+}
+
+.topnav-right {
+    display: flex;
+    border: 2px solid red;
+}
+
+nav a{
+    text-align: center;
+    padding: 0 10px 0 10px;
+    color: #001331;
+}
+
+nav{
+    float: right;    
+}
+
+.fas{
+    font-size: 16px;
+}
+
+.disp-wrapper{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.disp-weather {
+    display: inline-block;
+}
+
+.disp-weather div{          
+    border: 2px solid red;
+}
+
+.disp-weather div p{
+    display: flex;
+}
+
+
+
+
+
+
+
+

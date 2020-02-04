@@ -1,0 +1,44 @@
+const express = require('express');
+const app = express();
+const favicon = require('serve-favicon');
+const path = require('path');
+const bodyparser = require('body-parser');
+const request = require('request');
+const weather = require('./services/weather');
+const apikey = '4947bb2d2494492695180777bf03ba9a';
+const cookieParser = require('cookie-parser');
+const routes = require('./routes/');
+
+
+// Importing the public files : CSS/JS/Images etc 
+app.use(express.static('public')); 
+app.use(bodyparser.urlencoded({extended: true}));
+
+//Set the view engine as Jade/Pug
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, './views'));
+
+//Middleware to handle the favicon GET request 
+app.use(favicon(path.join(__dirname,'public','images','favicon.png')));
+
+//Cookie Parser 
+app.use(cookieParser()); 
+app.use('/', routes);
+
+//Middleware function to check if the any cookie is set, if not initialize the site to Boston location (02115 zipcode)
+app.use((req, res, next) => {
+    if(req.cookies['selected city'])
+    {
+        cityName = req.cookies['selected city'];
+        console.log(req.cookies)
+    }
+    else
+    {
+        cityName = "Boston";
+    }
+    return next();
+})
+
+app.listen(5000, () => {
+    console.log("App listening on port 5000");
+});
