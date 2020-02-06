@@ -56,11 +56,27 @@ nav{
 
 .disp-wrapper{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
 }
 
 .disp-weather {
     display: inline-block;
+}
+
+.clothes {
+    border: 2px solid red;
+}
+
+.clothes ul {
+    display: inline-flex;
+    padding-left: 0px;
+    justify-content: center;
+    align-content: center;
+}
+
+.clothes img {
+    width: 30%;
+    height: auto;
 }
 
 .disp-weather div{          

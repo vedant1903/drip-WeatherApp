@@ -6,15 +6,15 @@ const temperature = {
         "end" : 0
     },
     "cold" : {
-        "start" : 1,
+        "start" : 0,
         "end" : 5
     },
     "cool" : {
-        "start" : 6,
+        "start" : 5,
         "end" : 10
     },
     "ideal" : {
-        "start" : 11,
+        "start" : 10,
         "end" : 20
     },
     "warm" : {
@@ -29,12 +29,12 @@ const temperature = {
 
 const wind = {
     "normal" : {
-        "min" : 1,
+        "min" : 0,
         "max" : 6
     },
     "windy" : {
-        "min" : 8,
-        "max" : 35
+        "min" : 6,
+        "max" : 20
     }
 };
 
@@ -44,10 +44,13 @@ function getClassification(data)
 {
     const tempClass = checkTemperature(data.main.temp);
     console.log(`Temp ${data.main.temp} belongs to class ${tempClass}`);
+    
     const windClass = checkWind(data.wind.speed);
     console.log(`Wind ${data.wind.speed} belongs to class ${windClass}`);
+    
+    console.log("Summary "+ data.weather[0].main);
+    const aggObject = { "temp" : tempClass, "wind" : windClass, "summary" : data.weather[0].main};
 
-    const aggObject = { "temp" : tempClass, "wind" : windClass};
     const url = clothes.getClothes(aggObject);
 
     return url;
@@ -81,6 +84,7 @@ const checkWind = (wValue) =>
 }
 
 /*------------------------------------------------------------------*/
+
 
 module.exports = {
     getClassification

@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
                 humidity : data.main.humidity,
                 wind : data.wind.speed,
                 country : data.sys.country,
-                imgUrl : displayNodes
+                imgUrlSet : displayNodes
             });
         }        
     })

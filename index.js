@@ -18,5 +18,5 @@ app.use(favicon(path.join(__dirname,'public','images','favicon.png')));
 app.use('/', routes);
 
 app.listen(3000, () => {
-    console.log("App listening on port 5000");
+    console.log("App listening on port 3000");
 });
