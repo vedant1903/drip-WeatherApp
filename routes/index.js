@@ -27,13 +27,20 @@ router.get('/', (req, res) => {
             const displayNodes = classif.getClassification(data);
             console.log(displayNodes);
             return res.render('index.pug', {
-                weatherTitle: `Weather for ${cityy}`,
+                weatherTitle: cityy,
+                desc: data.weather[0].description,
                 temperature : data.main.temp,
+                feelslike : data.main.feels_like,
                 pressure : data.main.pressure,
                 humidity : data.main.humidity,
                 wind : data.wind.speed,
                 country : data.sys.country,
-                imgUrlSet : displayNodes
+                imgUrlSet : displayNodes,
+                min: data.main.temp_min,
+                max: data.main.temp_max,
+                icon: data.weather[0].icon,
+                unit: "C",
+                data: data
             });
         }        
     })
@@ -47,20 +54,31 @@ router.post('/', (req, res) => {
     {
 
         weather(city, (error,data) => {
-            if(!error)
+            if(data.cod===200)
             {
                 const displayNodes = classif.getClassification(data);
                 console.log(displayNodes);
                 res.cookie('selected city',city)
                 return res.render('index.pug', {
-                    weatherTitle: `Weather for ${city}`,
+                    weatherTitle: city,
+                    desc: data.weather[0].description,
                     temperature : data.main.temp,
+                    feelslike : data.main.feels_like,
                     pressure : data.main.pressure,
                     humidity : data.main.humidity,
                     wind : data.wind.speed,
                     country : data.sys.country,
-                    imgUrlSet : displayNodes
+                    imgUrlSet : displayNodes,
+                    min: data.main.temp_min,
+                    max: data.main.temp_max,
+                    icon: data.weather[0].icon,
+                    unit: "C",
+                    data: data
                 });
+            }
+            else 
+            {
+                res.send("Place not found");
             }        
         })               
     }

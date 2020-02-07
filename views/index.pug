@@ -1,39 +1,57 @@
 head
-  title My first Web App
+  title Drip: Dress right
   script(src='https://kit.fontawesome.com/82dc4ee1f2.js' crossorigin='anonymous')
-  link(type='text/css' rel='stylesheet' href='/css/style.css')
+  link(type='text/css' rel='stylesheet' href='/styles/main.css')
+  link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')
   link(href='https://fonts.googleapis.com/css?family=Alata&display=swap' rel='stylesheet')
 .topnav
   .topnav-left
     a.logo-home(href='') drip.
   .topnav-right
     form(action='/' method='POST')
-      input(type='text' name='city' placeholder='Enter the city here' required='')
+      input(type='text' name='city' placeholder='Enter the zipcode here' required='')
       button.btn.btn-primary(type='submit')
         i.fas.fa-search-location
     nav
       a(href='') Home
       a(href='') About Us
-.disp-wrapper
-  .clothes
-    ul
-    each val in imgUrlSet
-      li
-        img(src=`/images/clothes/${val}`)
-  .disp-weather
-    h3=(`${weatherTitle}, ${country}`)
-    div
-      p Temperature
-      p.weather=temperature
-    div
-      p Pressure, mm
-      p.pressure=pressure
-    div
-      p Humidity, %
-      p.humidity=humidity
-    div
-      p Wind, m/sec
-      p.wind=wind
-    div
-      p Precipitation, %
-      p.precip=imgUrlSet
+.main.container
+  .row.align-items-center
+    .col-sm-6
+      .details
+        .cardtop
+          img.ctopleft(src=`/images/weather/${icon}.svg`)
+          .ctopright
+            h2 Today
+            h4 11:44
+            h6 Mon, 11 January
+        .cardbottom
+          .loc
+            h1=`${temperature}°${unit}`
+            h6.text-capitalize=desc
+            h2=weatherTitle
+            h6=country
+          .add-attributes
+            table
+              tbody
+                tr
+                  th.bold Feels like
+                  th.feelslike=feelslike
+                  th.bold H/L
+                  th.maxNmin=`${max}°/${min}°`
+                tr
+                  th.bold Humidity
+                  th.humidity=humidity
+                  th.bold Pressure
+                  th.pressure=pressure
+                tr
+                  th.bold Wind
+                  th.wind=`${wind}m/h`
+                  if(data.visibility)                                  
+                   th.bold Visibility
+                   th.visibility=data.visibility
+    .col-sm-6
+      .rightdetails
+        each val in imgUrlSet
+          .item
+            img(src=`/images/clothes/${val}`)

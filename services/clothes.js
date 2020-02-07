@@ -99,8 +99,8 @@ const rainItems = {
         "Rain" : true,
         "Snow" : true
     },
-    "snowshoes" : {
-        "url" : "snowshoes.svg",
+    "winterboots" : {
+        "url" : "winterboots.svg",
         "Snow" : true
     }
 }

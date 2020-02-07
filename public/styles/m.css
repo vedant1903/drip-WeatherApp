@@ -1,0 +1,137 @@
+@font-face {
+    font-family: koliko;
+    src: url(fonts/koliko-Regular.woff);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+body{
+    background-color: #001331;
+    font-family: 'Alata', sans-serif;   
+    color: white;
+    margin: 0;
+}
+
+
+.topnav a {
+    float: left;
+}
+
+.logo-home{
+    font-size: 32px;
+    color: #001331;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+.topnav{
+    overflow: hidden;
+    display: flex;
+    background-color: slategray;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1% 8% 1% 8%;
+}
+
+.topnav-right {
+    display: flex;
+}
+
+nav a{
+    text-align: center;
+    padding: 0 10px 0 10px;
+    color: #001331;
+}
+
+nav{
+    float: right;    
+}
+
+.fas{
+    font-size: 16px;
+}
+
+/*-----------------------------------*/
+
+.details {
+    margin: 12%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    border: 1px solid black;
+    border-radius: 15px;
+    
+}
+
+
+.cardtop {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.ctopright {
+    padding: 10px;
+    margin-left: 20px;
+}
+
+.cardtop img {
+    padding: 10px;
+    width:30%;
+}
+
+.cardbottom {
+    text-align: center;
+    margin-top: 20px;
+    display: inline-flexbox;
+    justify-content: center;
+}
+
+.add-attributes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10% 10%;
+    text-align: left;
+}
+
+
+th {
+    padding-left: 10px;
+}
+
+.feelslike, .maxNmin, .wind, .humidity, .visibility, .pressure{
+    font-weight: 200;
+}
+
+.attr {
+    padding: 5px;
+}
+
+/*-------------------------------------------------------------*/
+/* Right section */
+
+.rightdetails {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.item {
+    width: 15%;
+    margin: 5%;
+}
+
+.item img{
+    width: 100%;
+}

@@ -1,0 +1,16 @@
+@font-face {
+    font-family: koliko;
+    src: url(fonts/koliko-Regular.woff);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+body{
+    background-color: #001331;
+    font-family: 'Alata', sans-serif;   
+    color: white;
+    margin: 0;
+}
