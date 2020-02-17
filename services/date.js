@@ -1,50 +1,43 @@
+const moment = require('moment');
 
-// let unix_timestamp = 1581909994
-// // Create a new JavaScript Date object based on the timestamp
-// // multiplied by 1000 so that the argument is in milliseconds, not seconds.
-// var date = new Date(unix_timestamp * 1000);
-
-// // Hours part from the timestamp
-// var hours = date.getHours();
-
-// // Minutes part from the timestamp
-// var minutes = "0" + date.getMinutes();
-
-// // Seconds part from the timestamp
-// var seconds = "0" + date.getSeconds();
-
-// // Will display time in 10:30:23 format
-// var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-
-// console.log(formattedTime);
-
-
-/*-----------------------------------------------------------------*/
 var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
 
-function getTime(unixtime)
-{   
-    var date = new Date(unixtime * 1000);
-    // Hours part from the timestamp
-    var hours = date.getHours();
-    // Minutes part from the timestamp
-    var minutes = "0" + date.getMinutes();
-
-    // Will display time in 10:30:23 format
-    var formattedTime = hours + ':' + minutes.substr(-2) 
-    return formattedTime
+function getTime(data)
+{
+    var arr = []
+    if(data.timezone < 0)
+    {
+        let hrsDiff = Math.floor(Math.abs(data.timezone/3600))
+        let minsDiff = Math.abs((data.timezone/60)%60)
+        var d = moment.unix(data.dt).utc().subtract(hrsDiff,'h').add(minsDiff,'m')
+        //console.log("final date is hrs:",d.hour()," mins:",d.minute())
+        return d.hour()+":"+d.minute()
+    }
+    else {
+        let hrsDiff = Math.floor(Math.abs(data.timezone/3600))
+        let minsDiff = Math.abs((data.timezone/60)%60)
+        var d = moment.unix(data.dt).utc().subtract(hrsDiff,'h').add(minsDiff,'m')
+        return d.hour()+":"+d.minute()
+    }
 }
 
-function getDateString(unixtime){
-    //Mon, 11 January
-    var date = new Date(unixtime * 1000)
-    var day = days[date.getDay()]
-    var month = months[date.getMonth()]
-    var d = date.getDate()
+function getDateString(data){
+    
+    if(data.timezone < 0)
+    {
+        let hrsDiff = Math.floor(Math.abs(data.timezone/3600))
+        let minsDiff = Math.abs((data.timezone/60)%60)
+        var d = moment.unix(data.dt).utc().subtract(hrsDiff,'h').add(minsDiff,'m')
+        return days[d.day()] + ", " + d.date() + " " + months[d.month()]
+    }
+    else {
+        let hrsDiff = Math.floor(Math.abs(data.timezone/3600))
+        let minsDiff = Math.abs((data.timezone/60)%60)
+        var d = moment.unix(data.dt).utc().subtract(hrsDiff,'h').add(minsDiff,'m')
+        return days[d.day()] + ", " + d.date() + " " + months[d.month()]
+    }
 
-    var dateString = day+", "+d+" "+month
-    return dateString
 }
 
 

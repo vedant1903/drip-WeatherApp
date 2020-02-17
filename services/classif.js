@@ -43,12 +43,12 @@ const wind = {
 function getClassification(data)
 {
     const tempClass = checkTemperature(data.main.temp);
-    console.log(`Temp ${data.main.temp} belongs to class ${tempClass}`);
+    //console.log(`Temp ${data.main.temp} belongs to class ${tempClass}`);
     
     const windClass = checkWind(data.wind.speed);
-    console.log(`Wind ${data.wind.speed} belongs to class ${windClass}`);
+    //console.log(`Wind ${data.wind.speed} belongs to class ${windClass}`);
     
-    console.log("Summary "+ data.weather[0].main);
+    //console.log("Summary "+ data.weather[0].main);
     const aggObject = { "temp" : tempClass, "wind" : windClass, "summary" : data.weather[0].main};
 
     const url = clothes.getClothes(aggObject);

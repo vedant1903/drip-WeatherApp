@@ -8,7 +8,7 @@ const urlUnitsKey = '&units=metric&appId=4947bb2d2494492695180777bf03ba9a'
 
     const weather = (city, callback) => {
         let url = urlAddr + city + urlUnitsKey;
-        console.log("Requesting : "+url);
+        //console.log("Requesting : "+url);
         
         request(url, (err, response, body) =>{
             if(err)

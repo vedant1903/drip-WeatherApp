@@ -122,7 +122,7 @@ function getClothes(wClass) {
         
         if(rainItems[item][wClass.summary])
         {
-            console.log(`inside for  ${item}`);
+            //console.log(`inside for  ${item}`);
             itemsUrl.push(rainItems[item]["url"]);
         }    
     }

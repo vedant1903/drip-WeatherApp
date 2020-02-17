@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
     weather(cityy, (error,data) => {
         if(!error)
         {
-            const displayNodes = classif.getClassification(data);    
+            const displayNodes = classif.getClassification(data);  
             return res.render('index.pug', {
                 weatherTitle: cityy,
                 desc: data.weather[0].description,
@@ -41,8 +41,9 @@ router.get('/', (req, res) => {
                 icon: data.weather[0].icon,
                 unit: "C",
                 data: data,
-                date: date.getTime(data.dt),
-                ds: date.getDateString(data.dt)
+                //date: date.getTime(data.dt),
+                date: date.getTime(data),
+                ds: date.getDateString(data)
             });
         }        
     })
@@ -74,8 +75,9 @@ router.post('/', (req, res) => {
                     icon: data.weather[0].icon,
                     unit: "C",
                     data: data,
-                    date: date.getTime(data.dt),
-                    ds: date.getDateString(data.dt)
+                    //date: date.getTime(data.dt),
+                    date: date.getTime(data),
+                    ds: date.getDateString(data)
                 });
             }
             else
@@ -100,8 +102,9 @@ router.post('/', (req, res) => {
                             icon: data.weather[0].icon,
                             unit: "C",
                             data: data, 
-                            date: date.getTime(data.dt),
-                            ds: date.getDateString(data.dt),
+                            //date: date.getTime(data.dt),
+                            date: date.getTime(data),
+                            ds: date.getDateString(data),
                             error: true
                         });
                     }        
