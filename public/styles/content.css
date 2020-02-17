@@ -35,6 +35,21 @@
     justify-content: center;
 }
 
+.tu h1{
+    display: inline;
+}
+
+.active {
+    text-decoration: none;
+    color: black;
+}
+
+.inactive {
+    text-decoration: none;
+    color: blue;
+}
+
+
 .add-attributes {
     display: flex;
     flex-wrap: wrap;

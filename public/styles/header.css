@@ -3,8 +3,10 @@
 }
 
 .logo-home{
+    text-decoration: none;
     font-size: 32px;
-    color: #001331;
+    font-weight: 600;
+    color: white;
 }
 
 a{
@@ -13,10 +15,12 @@ a{
 }
 
 .topnav{
+    color: white;
     overflow: hidden;
     display: flex;
-    background-color:olivedrab;
-    align-items: center;
+    background-color:#203B45;
+    /*align-items: center;
+    align-content: center;*/
     justify-content: space-between;
     padding: 1% 8% 1% 8%;
 }
@@ -37,4 +41,32 @@ nav{
 
 .fas{
     font-size: 16px;
+    background-color: transparent;
+    color: #D1806D;
+}
+
+form a {
+    padding-left: 5px;
+}
+
+form button{
+    padding: 0px 5px;
+    margin-left: 2px;
+    display:inline-block;
+    padding:0px 5px;
+    margin:0.1em;
+    border:0.15em solid #CCCCCC;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Segoe UI','Roboto',sans-serif;
+    font-weight:400;
+    color:#000000;
+    background-color:#CCCCCC;
+    text-align:center;
+    position:relative;
+}
+
+.error-msg {
+    color: red;
+    padding-left: 2px;
 }

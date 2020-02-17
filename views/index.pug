@@ -9,12 +9,11 @@ head
     a.logo-home(href='') drip.
   .topnav-right
     form(action='/' method='POST')
-      input(type='text' name='city' placeholder='Enter the zipcode here' required='')
-      button.btn.btn-primary(type='submit')
-        i.fas.fa-search-location
-    nav
-      a(href='') Home
-      a(href='') About Us
+      input(type='text' name='city' placeholder='Enter the city' required='')
+      button(type='submit') Search
+    if(error)  
+      div
+        span.error-msg Error, try again        
 .main.container
   .row.align-items-center
     .col-sm-6
@@ -23,8 +22,8 @@ head
           img.ctopleft(src=`/images/weather/${icon}.svg`)
           .ctopright
             h2 Today
-            h4 11:44
-            h6 Mon, 11 January
+            h4=date
+            h6=ds
         .cardbottom
           .loc
             h1=`${temperature}°${unit}`
