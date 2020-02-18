@@ -17,6 +17,6 @@ app.set('views', path.join(__dirname, './views'));
 app.use(favicon(path.join(__dirname,'public','images','favicon.png')));
 app.use('/', routes);
 
-//app.set('port', process.env.PORT);
-app.set('port', 3000);
+app.set('port', process.env.PORT);
+//app.set('port', 3000);
 app.listen(app.get('port'));

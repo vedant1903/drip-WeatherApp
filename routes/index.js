@@ -5,6 +5,7 @@ const classif = require('../services/classif');
 const clothes = require('../services/clothes');
 const date = require('../services/date')
 let cityy;
+let unit = "metric"
 
 router.use((req, res, next) => {
     if(req.cookies['selected city'])
@@ -22,7 +23,7 @@ router.use((req, res, next) => {
 router.get('/', (req, res) => {
     console.log(`Calling getweather for ${cityy}`);
     
-    weather(cityy, (error,data) => {
+    weather(cityy, unit, (error,data) => {
         if(!error)
         {
             const displayNodes = classif.getClassification(data);  
@@ -49,13 +50,41 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/imperial', (req,res) => {
+    unit = "imperial"
+    weather(cityy, unit, (error,data) => {
+        if(!error)
+        {
+            const displayNodes = classif.getClassification(data);  
+            return res.render('index.pug', {
+                weatherTitle: cityy,
+                desc: data.weather[0].description,
+                temperature : data.main.temp,
+                feelslike : data.main.feels_like,
+                pressure : data.main.pressure,
+                humidity : data.main.humidity,
+                wind : data.wind.speed,
+                country : data.sys.country,
+                imgUrlSet : displayNodes,
+                min: data.main.temp_min,
+                max: data.main.temp_max,
+                icon: data.weather[0].icon,
+                unit: "C",
+                data: data,
+                //date: date.getTime(data.dt),
+                date: date.getTime(data),
+                ds: date.getDateString(data)
+            });
+        }
+    })
+})
 
 router.post('/', (req, res) => {
 
     let city = req.body.city;
     if(city)
     {
-        weather(city, (error,data) => {
+        weather(city, unit, (error,data) => {
             if(data.cod===200)
             {
                 const displayNodes = classif.getClassification(data);            
@@ -82,7 +111,7 @@ router.post('/', (req, res) => {
             }
             else
             {
-                weather(cityy, (error,data) => {
+                weather(cityy, unit, (error,data) => {
                     if(!error)
                     {
                         const displayNodes = classif.getClassification(data);
