@@ -1,13 +1,14 @@
 const apikey = '4947bb2d2494492695180777bf03ba9a';
 const request = require('request');
 const urlAddr = 'http://api.openweathermap.org/data/2.5/weather?q='
-const urlUnitsKey = '&units=metric&appId=4947bb2d2494492695180777bf03ba9a'
+const units = '&units='
+const Key = '&appId=4947bb2d2494492695180777bf03ba9a'
 
 //`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appId=${apikey}`
 
 
-    const weather = (city, callback) => {
-        let url = urlAddr + city + urlUnitsKey;
+    const weather = (city, unit, callback) => {
+        let url = urlAddr + city + units +unit + Key;
         //console.log("Requesting : "+url);
         
         request(url, (err, response, body) =>{

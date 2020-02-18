@@ -19,33 +19,38 @@ head
     .col-sm-6
       .details
         .cardtop
-          img.ctopleft(src=`/images/weather/${icon}.svg`)
+          img.ctopleft(src=`/images/weather/${data.weather[0].icon}.svg`)
           .ctopright
             h2 Today
             h4=date
             h6=ds
         .cardbottom
           .loc
-            h1=`${temperature}°${unit}`
-            h6.text-capitalize=desc
+            .tu
+                h1=`${data.main.temp}°`
+                a.active(href='/') C
+                |  | 
+                a.inactive(href='/imperial') F        
+            //=`${temperature}°${unit}`
+            h6.text-capitalize=data.weather[0].description
             h2=weatherTitle
-            h6=country
+            h6=data.sys.country
           .add-attributes
             table
               tbody
                 tr
                   th.bold Feels like
-                  th.feelslike=feelslike
+                  th.feelslike=data.main.feels_like
                   th.bold H/L
-                  th.maxNmin=`${max}°/${min}°`
+                  th.maxNmin=`${data.main.temp_max}°/${data.main.temp_min}°`
                 tr
                   th.bold Humidity
-                  th.humidity=humidity
+                  th.humidity=data.main.humidity
                   th.bold Pressure
-                  th.pressure=pressure
+                  th.pressure=data.main.pressure
                 tr
                   th.bold Wind
-                  th.wind=`${wind}m/h`
+                  th.wind=`${data.wind.speed}`
                   if(data.visibility)                                  
                    th.bold Visibility
                    th.visibility=data.visibility
