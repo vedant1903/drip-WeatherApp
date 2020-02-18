@@ -6,6 +6,7 @@ const clothes = require('../services/clothes');
 const date = require('../services/date')
 let cityy;
 let unit = "metric"
+let displayNodes = []
 
 router.use((req, res, next) => {
     if(req.cookies['selected city'])
@@ -26,11 +27,10 @@ router.get('/', (req, res) => {
     weather(cityy, unit, (error,data) => {
         if(!error)
         {
-            const displayNodes = classif.getClassification(data);  
+            displayNodes = classif.getClassification(data);  
             return res.render('index.pug', {
-                weatherTitle: cityy,                
-                unit: "C",
-                imgUrlSet : displayNodes,
+                city: cityy,                                
+                imgSet : displayNodes,
                 data: data,
                 date: date.getTime(data),
                 ds: date.getDateString(data)
@@ -43,24 +43,11 @@ router.get('/imperial', (req,res) => {
     unit = "imperial"
     weather(cityy, unit, (error,data) => {
         if(!error)
-        {
-            const displayNodes = classif.getClassification(data);  
+        { 
             return res.render('index.pug', {
-                weatherTitle: cityy,
-                desc: data.weather[0].description,
-                temperature : data.main.temp,
-                feelslike : data.main.feels_like,
-                pressure : data.main.pressure,
-                humidity : data.main.humidity,
-                wind : data.wind.speed,
-                country : data.sys.country,
-                imgUrlSet : displayNodes,
-                min: data.main.temp_min,
-                max: data.main.temp_max,
-                icon: data.weather[0].icon,
-                unit: "F",
+                city: cityy,                                
+                imgSet : displayNodes,
                 data: data,
-                //date: date.getTime(data.dt),
                 date: date.getTime(data),
                 ds: date.getDateString(data)
             });
@@ -77,26 +64,14 @@ router.post('/', (req, res) => {
         weather(city, unit, (error,data) => {
             if(data.cod===200)
             {
-                const displayNodes = classif.getClassification(data);            
+                displayNodes = classif.getClassification(data);            
                 res.cookie('selected city',city)
                 return res.render('index.pug', {
-                    weatherTitle: city,
-                    desc: data.weather[0].description,
-                    temperature : data.main.temp,
-                    feelslike : data.main.feels_like,
-                    pressure : data.main.pressure,
-                    humidity : data.main.humidity,
-                    wind : data.wind.speed,
-                    country : data.sys.country,
-                    imgUrlSet : displayNodes,
-                    min: data.main.temp_min,
-                    max: data.main.temp_max,
-                    icon: data.weather[0].icon,
-                    unit: "C",
-                    data: data,
-                    //date: date.getTime(data.dt),
-                    date: date.getTime(data),
-                    ds: date.getDateString(data)
+                    city: cityy,                                
+                imgSet : displayNodes,
+                data: data,
+                date: date.getTime(data),
+                ds: date.getDateString(data)
                 });
             }
             else
@@ -104,27 +79,15 @@ router.post('/', (req, res) => {
                 weather(cityy, unit, (error,data) => {
                     if(!error)
                     {
-                        const displayNodes = classif.getClassification(data);
+                        displayNodes = classif.getClassification(data);
                         console.log(displayNodes);
                         return res.render('index.pug', {
-                            weatherTitle: cityy,
-                            desc: data.weather[0].description,
-                            temperature : data.main.temp,
-                            feelslike : data.main.feels_like,
-                            pressure : data.main.pressure,
-                            humidity : data.main.humidity,
-                            wind : data.wind.speed,
-                            country : data.sys.country,
-                            imgUrlSet : displayNodes,
-                            min: data.main.temp_min,
-                            max: data.main.temp_max,
-                            icon: data.weather[0].icon,
-                            unit: "C",
-                            data: data, 
-                            //date: date.getTime(data.dt),
-                            date: date.getTime(data),
-                            ds: date.getDateString(data),
-                            error: true
+                            city: cityy,                                
+                        imgSet : displayNodes,
+                        data: data,
+                        date: date.getTime(data),
+                        ds: date.getDateString(data),
+                        error: true
                         });
                     }        
                 })                

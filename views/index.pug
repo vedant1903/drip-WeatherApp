@@ -31,7 +31,6 @@ head
                 a.active(href='/') C
                 |  | 
                 a.inactive(href='/imperial') F        
-            //=`${temperature}°${unit}`
             h6.text-capitalize=data.weather[0].description
             h2=weatherTitle
             h6=data.sys.country

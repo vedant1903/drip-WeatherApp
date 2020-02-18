@@ -42,6 +42,7 @@ const wind = {
 
 function getClassification(data)
 {
+    
     const tempClass = checkTemperature(data.main.temp);
     //console.log(`Temp ${data.main.temp} belongs to class ${tempClass}`);
     
