@@ -32,7 +32,7 @@ head
                 |  | 
                 a.inactive(href='/imperial') F        
             h6.text-capitalize=data.weather[0].description
-            h2=weatherTitle
+            h2=city
             h6=data.sys.country
           .add-attributes
             table
@@ -49,12 +49,12 @@ head
                   th.pressure=data.main.pressure
                 tr
                   th.bold Wind
-                  th.wind=`${data.wind.speed}`
+                  th.wind=`${data.wind.speed}`               
                   if(data.visibility)                                  
                    th.bold Visibility
                    th.visibility=data.visibility
     .col-sm-6
       .rightdetails
-        each val in imgUrlSet
+        each val in imgSet
           .item
             img(src=`/images/clothes/${val}`)
